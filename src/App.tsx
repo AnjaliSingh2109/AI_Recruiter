@@ -19,8 +19,8 @@ const App = () => {
       {/* Login page */}
       <Route path="/login" element={<AuthForms />} />
 
-      {/* Protected routes */}
-      <Route path="/dashboard" element={<Layout />}>
+
+      <Route path="/app" element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path="candidates" element={<Candidates />} />
         <Route path="jobs" element={<Jobs />} />
