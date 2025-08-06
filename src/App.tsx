@@ -1,4 +1,4 @@
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Dashboard from "./pages/Dashboard";
 import Candidates from "./pages/Candidates";
@@ -12,20 +12,23 @@ import Logout from "./pages/Logout";
 
 const App = () => {
   return (
-     <Routes>
-      {/* Login (landing page) */}
+    <Routes>
+      {/* Default: redirect to login */}
+      <Route path="/" element={<Navigate to="/login" />} />
+
+      {/* Login page */}
       <Route path="/login" element={<AuthForms />} />
 
-      {/* Protected routes under layout */}
-      <Route path="/" element={<Layout />}>
+      {/* Protected routes */}
+      <Route path="/dashboard" element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path="candidates" element={<Candidates />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/generate-jd" element={<GenerateJD />} />
-        <Route path="/add-candidate" element={<AddCandidate />} />
-        <Route path="/hr-screening" element={<HRScreening />} />
-        <Route path="/technical-screening" element={<TechnicalScreening />} />
-         <Route path="/logout" element={<Logout />} />
+        <Route path="jobs" element={<Jobs />} />
+        <Route path="generate-jd" element={<GenerateJD />} />
+        <Route path="add-candidate" element={<AddCandidate />} />
+        <Route path="hr-screening" element={<HRScreening />} />
+        <Route path="technical-screening" element={<TechnicalScreening />} />
+        <Route path="logout" element={<Logout />} />
       </Route>
     </Routes>
   );
