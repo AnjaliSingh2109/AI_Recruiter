@@ -12,6 +12,7 @@ import {
   FaIdBadge,
   FaRobot,
 } from "react-icons/fa";
+import api from "../config";
 import axios from "axios";
 
 type FormData = {
@@ -41,7 +42,8 @@ const AuthForm = () => {
       let payload = {};
 
       if (activeTab === "login") {
-        endpoint = loginType === "company" ? "/auth/company/login" : "/auth/user/login";
+        endpoint =
+          loginType === "company" ? "/auth/company/login" : "/auth/user/login";
         payload = {
           email: form.email,
           password: form.password,
@@ -65,7 +67,9 @@ const AuthForm = () => {
         };
       }
 
-      const res = await axios.post(`http://localhost:8081${endpoint}`, payload);
+      const res = await api.post(endpoint, payload, {
+        withCredentials: true,
+      });
 
       if (activeTab === "login") {
         localStorage.setItem("token", res.data.token);
@@ -78,10 +82,14 @@ const AuthForm = () => {
         reset();
         setActiveTab("login");
       }
-    } catch (error: any) {
-      toast.error(
-        error?.response?.data?.message || "Something went wrong. Try again."
-      );
+    } catch (error) {
+      let errorMessage = "Something went wrong. Try again.";
+
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.message || errorMessage;
+      }
+
+      toast.error(errorMessage);
     }
   };
 

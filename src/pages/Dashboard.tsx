@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import axios from "axios";
 import api from "../config";
 import JobCountChart from "../components/JobCountChart";
 import CandidateCountChart from "../components/CandidateCountChart";

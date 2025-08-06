@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row, Table } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
-import axios from "axios";
 import api from "../config";
 import { FaBriefcase, FaClipboardList, FaEye, FaTrash, FaUserPlus, FaUsers } from "react-icons/fa";
 
@@ -31,30 +30,22 @@ const Jobs = () => {
   }, []);
 
   const handleView = () => {};
-  const handleDelete = async (id: number) => {
-    if (!window.confirm("Are you sure you want to delete this candidate?"))
-      return;
-
-    try {
-      await axios.delete(`${apiBase}/candidates/${id}`);
-      setJobData((prev) => prev.filter((candidate) => candidate.id !== id));
-    } catch (error) {
-      console.error("Failed to delete candidate", error);
-      alert("Delete failed. Please try again.");
-    }
-  };
+ 
 
   const itemsPerPage = 5;
   const [itemOffset, setItemOffset] = useState(0);
 
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = jobData.slice(itemOffset, endOffset);
+  console.log("CurrentItems",currentItems);
+  
   const pageCount = Math.ceil(jobData.length / itemsPerPage);
 
-  const handlePageClick = (event: any) => {
+  const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % jobData.length;
     setItemOffset(newOffset);
   };
+  
   return (
     <div className="">
       <Row className="g-4 my-4">
@@ -149,7 +140,6 @@ const Jobs = () => {
                     title="View Candidate"
                   />
                   <FaTrash
-                    onClick={() => handleDelete(candidate.id)}
                     style={{ cursor: "pointer", color: "red" }}
                     title="Delete Candidate"
                   />

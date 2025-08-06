@@ -1,4 +1,3 @@
-import React from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaRobot } from "react-icons/fa";
 

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Button, Spinner, Form, Alert } from "react-bootstrap";
 import { FaFileUpload } from "react-icons/fa";
-import axios from "axios";
 import api from "../config";
 
 export default function HRScreening() {
@@ -35,8 +34,7 @@ export default function HRScreening() {
         (item: ICandidate) => item.email === email
       );
 
-
-      setSelectedCandidate(desiredCandidate);
+      setSelectedCandidate(desiredCandidate ?? null);
 
 
       if (desiredCandidate?.cvBase64) {
@@ -94,6 +92,8 @@ export default function HRScreening() {
       setQuestions(response.data || []);
     } catch (err) {
       setError("Failed to generate questions. Please try again.");
+      console.log("Error",err);
+      
     } finally {
       setLoading(false);
     }

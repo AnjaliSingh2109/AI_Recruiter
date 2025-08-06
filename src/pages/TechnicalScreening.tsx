@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Spinner, Form, Alert } from "react-bootstrap";
 import { FaFileUpload } from "react-icons/fa";
-import axios from "axios";
 import api from "../config";
 
 export default function TechnicalScreening() {
@@ -92,6 +91,8 @@ export default function TechnicalScreening() {
       setQuestions(response.data || []);
     } catch (err) {
       setError("Failed to generate questions. Please try again.");
+      console.log("Error",err);
+      
     } finally {
       setLoading(false);
     }

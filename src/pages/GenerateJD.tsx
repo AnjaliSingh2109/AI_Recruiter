@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "react-bootstrap";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -21,7 +21,6 @@ type JobPayload = {
 
 export default function GenerateJDModal() {
   const [result, setResult] = useState("");
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -33,23 +32,20 @@ export default function GenerateJDModal() {
 
   const onSubmit = async (data: JobPayload) => {
     setIsLoading(true);
-    setError("");
     setResult("");
 
     try {
       const res = await api.post(`/api/job-desc`, data);
-       const response = await api.post("/api/generate", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+      console.log("Response", res);
 
-    // Set the result from the response data
-    setResult(response.data); // Assuming the JD is plain text
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An unexpected error occurred"
-      );
+      const response = await api.post("/api/generate", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Set the result from the response data
+      setResult(response.data); // Assuming the JD is plain text
     } finally {
       setIsLoading(false);
     }
@@ -58,27 +54,11 @@ export default function GenerateJDModal() {
   const handleReset = () => {
     reset();
     setResult("");
-    setError("");
   };
   const navigate = useNavigate();
 
   return (
     <div className="p-4 bg-white rounded">
-      {/* <Button variant="primary" onClick={() => setShow(true)}>
-        Open Job Description Generator
-      </Button>
-
-      <Modal
-        show={show}
-        onHide={() => setShow(false)}
-        size="xl"
-        backdrop="static"
-        scrollable
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Generate Job Description</Modal.Title>
-        </Modal.Header>
-        <Modal.Body> */}
       <div className="d-flex">
         <Button
           onClick={() => navigate("/")}
@@ -127,10 +107,6 @@ export default function GenerateJDModal() {
             </label>
             <input className="form-control" {...register("experience")} />
           </div>
-          {/* <div className="col-md-4">
-                <label className="form-label  fw-bold">Job Type<span className="text-danger">*</span></label>
-                <input className="form-control" {...register("jobType")} />
-              </div> */}
           <div className="col-md-4">
             <label className="form-label fw-bold">
               Job Type<span className="text-danger">*</span>
@@ -231,30 +207,6 @@ export default function GenerateJDModal() {
           {result}
         </div>
       )}
-
-      {/* 
-          {result && (
-            <div
-              className="alert alert-success mt-4"
-              style={{ whiteSpace: "pre-wrap" }}
-            >
-              <h5>Generated JD:</h5>
-              {result}
-            </div>
-          )}
-
-          {error && (
-            <div className="alert alert-danger mt-3">
-              <strong>Error:</strong> {error}
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShow(false)}>
-            Close
-          </Button>
-        </Modal.Footer> */}
-      {/* </Modal> */}
     </div>
   );
 }

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import  { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   LineElement,
@@ -9,6 +8,7 @@ import {
   Tooltip,
   Filler,
   Legend,
+  type ChartData,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import api from "../config";
@@ -17,7 +17,7 @@ import api from "../config";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Filler, Legend);
 
 export default function JobCountChart() {
-  const [chartData, setChartData] = useState<any>(null);
+  const [chartData, setChartData] = useState<ChartData<"line"> | null>(null);
   const [error, setError] = useState("");
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import type { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axio
 
 // Create Axios instance
 const api = axios.create({
-  baseURL: 'http://localhost:8081',
+  baseURL: 'http://13.203.210.161:8081',
 });
 
 // Request interceptor to attach token

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "react-bootstrap";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -11,6 +11,7 @@ type CandidatePayload = {
   job_Id: string;
   phone_number: string;
   cv?: FileList;
+  role:string;
 };
 
 export default function AddCandidate() {
@@ -128,7 +129,7 @@ export default function AddCandidate() {
               {...register("job_Id", { required: "Job Code is required" })}
             >
               <option value="">-- Select Job Code --</option>
-              {jobs.map((job: any) => (
+              {jobs.map((job:CandidatePayload) => (
                 <option key={job.job_Id} value={job.job_Id}>
                   {`${job.role} (${job.job_Id})`}
                 </option>
