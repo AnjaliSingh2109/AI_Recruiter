@@ -3,7 +3,7 @@ import type { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axio
 
 // Create Axios instance
 const api = axios.create({
-  baseURL: 'http://13.203.210.161:8081',
+  baseURL: 'https://ai-recruiter-backend-7.onrender.com',
 });
 
 // Request interceptor to attach token
