@@ -27,12 +27,12 @@ api.interceptors.response.use(
     if (status === 401) {
       //alert("Session expired or unauthorized. Please log in again.");
       localStorage.removeItem('token');
-      window.location.href = '/login';
+     // window.location.href = '/login';
     }
 
     if (status === 403) {
       //alert("Access denied. You do not have permission to access this resource.");
-      window.location.href = '/login';
+     // window.location.href = '/login';
     }
 
     return Promise.reject(error);

@@ -32,33 +32,33 @@ const Sidebar: React.FC = () => {
 
       <ul className="nav flex-column">
         <li className="nav-item mb-2">
-          <Link to="/" className="nav-link text-white d-flex align-items-center">
+          <Link to="/app" className="nav-link text-white d-flex align-items-center">
             <FaTachometerAlt className="me-2" /> {!isCollapsed && 'Dashboard'}
           </Link>
         </li>
 
         <li className="nav-item mb-2">
-          <Link to="/candidates" className="nav-link text-white d-flex align-items-center">
+          <Link to="/app/candidates" className="nav-link text-white d-flex align-items-center">
             <FaUser className="me-2" /> {!isCollapsed && 'Candidates'}
           </Link>
         </li>
 
         <li className="nav-item mb-2">
-          <Link to="/jobs" className="nav-link text-white d-flex align-items-center">
+          <Link to="/app/jobs" className="nav-link text-white d-flex align-items-center">
             <FaUsers className="me-2" /> {!isCollapsed && 'Jobs'}
           </Link>
         </li>
 
         {role === 'COMPANY' && (
           <li className="nav-item mb-2">
-            <Link to="/generate-jd" className="nav-link text-white d-flex align-items-center">
+            <Link to="/app/generate-jd" className="nav-link text-white d-flex align-items-center">
               <FaFileAlt className="me-2" /> {!isCollapsed && 'Job Descriptions'}
             </Link>
           </li>
         )}
 
         <li className="nav-item mb-2">
-          <Link to="/add-candidate" className="nav-link text-white d-flex align-items-center">
+          <Link to="/app/add-candidate" className="nav-link text-white d-flex align-items-center">
             <FaUserTie className="me-2" /> {!isCollapsed && 'Add Candidate'}
           </Link>
         </li>
@@ -66,12 +66,12 @@ const Sidebar: React.FC = () => {
         {role === 'USER' && (
           <>
             <li className="nav-item mb-2">
-              <Link to="/hr-screening" className="nav-link text-white d-flex align-items-center">
+              <Link to="/app/hr-screening" className="nav-link text-white d-flex align-items-center">
                 <FaStream className="me-2" /> {!isCollapsed && 'HR Screening'}
               </Link>
             </li>
             <li className="nav-item mb-2">
-              <Link to="/technical-screening" className="nav-link text-white d-flex align-items-center">
+              <Link to="/app/technical-screening" className="nav-link text-white d-flex align-items-center">
                 <FaChartLine className="me-2" /> {!isCollapsed && 'Technical Screening'}
               </Link>
             </li>
@@ -80,7 +80,7 @@ const Sidebar: React.FC = () => {
       </ul>
 
       <div className="mt-auto">
-        <Link to="/logout" className="nav-link text-white d-flex align-items-center">
+        <Link to="/app/logout" className="nav-link text-white d-flex align-items-center">
           <FaSignOutAlt className="me-2" /> {!isCollapsed && 'Logout'}
         </Link>
       </div>

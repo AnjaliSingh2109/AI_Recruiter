@@ -72,11 +72,17 @@ const AuthForm = () => {
       });
 
       if (activeTab === "login") {
+        if (res.status === 200) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("email", res.data.email);
         localStorage.setItem("role", res.data.role);
         toast.success("Login successful!");
-        window.location.href = "/";
+        console.log("Logged In",res);
+        window.location.href = "/app";
+        
+      } else {
+        toast.error("Login failed. Please check your credentials.");
+      }
       } else {
         toast.success("Registration successful.");
         reset();
