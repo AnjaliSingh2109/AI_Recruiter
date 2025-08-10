@@ -84,6 +84,7 @@ const AuthForm = () => {
       }
     } catch (error) {
       let errorMessage = "Something went wrong. Try again.";
+console.log(error);
 
       if (axios.isAxiosError(error)) {
         errorMessage = error.response?.data?.message || errorMessage;
